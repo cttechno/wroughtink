@@ -1016,7 +1016,6 @@ img.alignright,
 	max-width: 350px;
 	padding-bottom: 5px;
 	padding-top: 5px;
-	width: 100%;
 }
 
 .wp-custom-logo .title-area img {
@@ -1302,6 +1301,8 @@ margin: 20px auto;
 
 .sub-menu .sub-menu-toggle {
 	padding: 12px 10px;
+	font-size: 12px;
+	margin-left: 20px;
 }
 
 .sub-menu-toggle::before {
