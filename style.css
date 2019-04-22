@@ -1130,8 +1130,6 @@ img.alignright,
 
 .wi_homepage_header_toprow_mobile{
 	margin: 10px 10px;
-	display: flex;
-	justify-content: space-between;
 }
 
 .wi_homepage_header_toprow_mobile img{
