@@ -1178,8 +1178,8 @@ margin: 20px auto;
 
 .lightbox{
 	display: none;
-	width: 100%;
-	height:300px;
+	width: 95%;
+	height:70vh;
 	background-color: white;
 	text-align: center;
 	color: rgb(51, 51, 51);
@@ -1187,7 +1187,7 @@ margin: 20px auto;
 
 .lightbox p {
 	margin: 20px 0px;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 .wi-gallery{
@@ -1592,6 +1592,20 @@ p.entry-meta {
 		display: none;
 	}
 
+
+	/* Lightbox Styles
+	--------------------------------------------- */
+
+	.lightbox{
+		font-size: 17px;
+	}
+
+	.lightbox img{
+		max-width: 300px;
+		max-height: 300px;
+	}
+
+
 	/* Genesis Menu
 	--------------------------------------------- */
 
@@ -1609,9 +1623,9 @@ p.entry-meta {
 	}
 
 	.genesis-nav-menu > .menu-highlight > a {
-		background-color: #333;
+		background-color: #fff;
 		border-radius: 3px;
-		color: #fff;
+		color: #0073e5;
 		font-weight: 600;
 		margin-left: 15px;
 		padding-left: 20px;
@@ -1667,6 +1681,8 @@ p.entry-meta {
 	.nav-primary {
 		clear: none;
 		width: auto;
+		position: absolute;
+		right: 0px;
 	}
 
 	.nav-primary li{
@@ -1674,17 +1690,29 @@ p.entry-meta {
 	}
 
 	.nav-primary .genesis-nav-menu a {
-		color:white;
 		padding-left: 15px;
 		padding-right: 15px;
 	}
 
 	.menu-item a{
-		color: white !important;
+		color: rgb(51, 51, 51);
 		text-decoration: none;
 		margin: 10px;
 		padding: 15px 25px;
 		font-size: 25px;
+	}
+
+	.wi_homepage_header nav{
+		position: relative !important;
+	}
+
+	.wi_homepage_header nav a {
+		color:white !important;
+	}
+
+
+	.wi_homepage_header nav li ul a {
+		background-color: rgb(51, 51, 51) !important;
 	}
 
 	/* Site-Inner

@@ -16,6 +16,9 @@
 		if('console' in window){ window.console.info('Featherlight needs regular jQuery, not the slim version.'); }
 		return;
 	}
+
+
+
 	/* Featherlight is exported as $.featherlight.
 	   It is a function used to open a featherlight lightbox.
 
