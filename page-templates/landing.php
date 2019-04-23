@@ -52,48 +52,69 @@ remove_action( 'genesis_header', 'genesis_header_markup_open', 5 );
 remove_action( 'genesis_header', 'genesis_do_header' );
 remove_action( 'genesis_header', 'genesis_header_markup_close', 15 );
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
+remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 remove_action( 'genesis_header', 'genesis_do_nav', 12 );
 
-
-add_action("genesis_header", 'do_custom_title_and_search_mobile');
-add_action("genesis_header", 'do_custom_title_and_search');
-add_filter( 'genesis_attr_nav-primary', 'wi_add_primary_nav_class' );
-//add_action("genesis_header", 'do_custom_call_to_action');
-
-
+$build_nav = get_wi_nav();
+//do_custom_title_and_search_mobile($build_nav);
+//add_action("genesis_header", 'do_custom_title_and_search_mobile', $build_nav);
+do_custom_title_and_search($build_nav);
 
 /**
 * This is the version of the header that will display when the page is at fullscreen
 */
-function do_custom_title_and_search(){
+
+//echo $build_nav;
+
+function do_custom_title_and_search($build_nav){
 	?>
 
-		<header class= 'wi_homepage_header' style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")' >
+		<header class= ''  >
+			<section class="wi_homepage_header" style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")'>
 				<section class='wi_homepage_header_toprow'>
-		        <span class="wi_homepage_site_logo"><?php the_custom_logo(); ?></span>
-		        <span class="wi_search"><?php get_search_form(); ?></span>
-		    </section>
-					<?php  get_wi_nav(); ?>
-	    <section class='wi-homepage-cta'>
-	        <h1><?php echo get_theme_mod("wi_hero_title"); ?></h1>
+						<span class="wi_homepage_site_logo"><?php the_custom_logo(); ?></span>
+						<span class="wi_search"><?php get_search_form(); ?></span>
+				</section>
+					<?php echo   get_wi_nav();  ?>
+				<section class='wi-homepage-cta'>
+					<h1><?php echo get_theme_mod("wi_hero_title"); ?></h1>
 					<section>
 						<p><?php echo get_theme_mod("wi_hero_text"); ?></p>
 					</section>
-	        <a href='<?php echo get_post(get_theme_mod("wi_hero_btn_link"))->guid; ?> ' class='hero-btn'><?php echo get_theme_mod("wi_hero_btn");?> </a>
-	    </section>
+					<a href='<?php echo get_post(get_theme_mod("wi_hero_btn_link"))->guid; ?> ' class='hero-btn'><?php echo get_theme_mod("wi_hero_btn");?> </a>
+				</section>
+			</section>
+			<section class="wi_homepage_header_mobile">
+				<section class='wi_homepage_header_toprow_mobile'>
+
+						<?php the_custom_logo(); ?>
+						<?php echo get_wi_nav(); ?>
+				</section>
+				<section class="wi_mobile_header_image" style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")' ></section>
+				<section class='wi-homepage-cta'>
+						<h1><?php echo get_theme_mod("wi_hero_title"); ?></h1>
+						<section>
+							<p><?php echo get_theme_mod("wi_hero_text"); ?></p>
+						</section>
+						<a href='<?php echo get_post(get_theme_mod("wi_hero_btn_link"))->guid; ?> ' class='hero-btn'><?php echo get_theme_mod("wi_hero_btn");?> </a>
+				</section>
+			</section>
+
 	</header>
 
 		<?php
 }//end do_custom_header
 
 
-function do_custom_title_and_search_mobile(){
+
+function do_custom_title_and_search_mobile($build_nav){
 	?>
 
 		<header class= 'wi_homepage_header_mobile'  >
 			<section class='wi_homepage_header_toprow_mobile'>
-					<span class="wi_homepage_site_logo"><?php the_custom_logo(); ?></span>
-					<span><?php  get_wi_nav(); ?></span>
+
+					<?php the_custom_logo(); ?>
+					<?php  echo "Well this part echos " .  $build_nav; ?>
 			</section>
 			<section class="wi_mobile_header_image" style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")' ></section>
 	    <section class='wi-homepage-cta'>
@@ -173,6 +194,7 @@ function wi_shop_link_markup(){
 
 function wi_get_nav_menu( $args = array() ) {
 
+	//merge passed in arges with the following array
 	$args = wp_parse_args(
 		$args,
 		array(
@@ -193,7 +215,7 @@ function wi_get_nav_menu( $args = array() ) {
 					'echo'    => false,
 				)
 			),
-			'echo'           => 0,
+			'echo'           => false,
 		)
 	);
 
@@ -209,6 +231,8 @@ function wi_get_nav_menu( $args = array() ) {
 
 	$sanitized_location = sanitize_key( $args['theme_location'] );
 
+
+
 	$nav = wp_nav_menu( $args );
 
 	// Do nothing if there is nothing to show.
@@ -223,25 +247,10 @@ function wi_get_nav_menu( $args = array() ) {
 		'theme_location' => $args['theme_location'],
 	);
 
-	$nav_output = genesis_markup(
-		array(
-			'open'    => '<nav %s>',
-			'close'   => '</nav>',
-			'context' => 'nav-' . $sanitized_location,
-			'content' => $nav_markup_open . $nav . $nav_markup_close,
-			'echo'    => false,
-			'params'  => $params,
-		)
-	);
 
-	$filter_location = $sanitized_location . '_nav';
 
-	// Handle back-compat for primary and secondary nav filters.
-	if ( 'primary' === $args['theme_location'] ) {
-		$filter_location = 'do_nav';
-	} elseif ( 'secondary' === $args['theme_location'] ) {
-		$filter_location = 'do_subnav';
-	}
+	//$filter_location = $sanitized_location . '_nav';
+
 
 	/**
 	 * Filter the navigation markup.
@@ -262,35 +271,27 @@ function wi_get_nav_menu( $args = array() ) {
 
 
 
+	  return genesis_markup(
+	 		array(
+	 			'open'    => '<nav %s>',
+	 			'close'   => '</nav>',
+	 			'context' => 'nav-' . $sanitized_location,
+	 			'content' => $nav_markup_open . $nav . $nav_markup_close,
+	 			'echo'    => 0,
+	 			'params'  => $params
+	 		)
+		);
 
-	  echo genesis_markup(
- 		array(
- 			'open'    => '<nav %s>',
- 			'close'   => '</nav>',
- 			'context' => 'nav-' . $sanitized_location,
- 			'content' => $nav_markup_open . $nav . $nav_markup_close,
- 			'echo'    => false,
- 			'params'  => $params,
- 		),
-		$nav,
-		$args
- 	);
-	//return apply_filters( "genesis_header", $nav_output, $nav, $args );
 }
 
-/**
-* Hooks into add_filter( 'genesis_attr_nav-primary', 'wi_add_primary_nav_class' );
-* This is used to append the .wi-frontpage-nav class onto the primary navigation section.
-*/
-function wi_add_primary_nav_class( $attributes ) {
-$attributes['class'] = $attributes['class']. ' .wi-frontpage-nav';
- return $attributes;
-}
 
 
 function get_wi_nav(){
-	 wi_get_nav_menu( array(
-							  		'theme_location' => 'primary',
-							  		'menu_class'     => $class,
+
+
+	return wi_get_nav_menu( array(
+										 'menu'              => "Primary", // (int|string|WP_Term) Desired menu. Accepts a menu ID, slug, name, or object.
+										 'menu_class'        => "menu genesis-nav-menu menu-primary js-superfish wi_m wi_l", // (string) CSS class to use for the ul element which forms the menu. Default 'menu'.
+										 'theme_location'    => "primary", // (string) Theme location to be used. Must be registered with register_nav_menu() in order to be selectable by the user.
 									));
 }
