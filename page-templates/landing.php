@@ -84,22 +84,6 @@ function do_custom_title_and_search($build_nav){
 					<a href='<?php echo get_post(get_theme_mod("wi_hero_btn_link"))->guid; ?> ' class='hero-btn'><?php echo get_theme_mod("wi_hero_btn");?> </a>
 				</section>
 			</section>
-			<section class="wi_homepage_header_mobile">
-				<section class='wi_homepage_header_toprow_mobile'>
-
-						<?php the_custom_logo(); ?>
-						<?php echo get_wi_nav(); ?>
-				</section>
-				<section class="wi_mobile_header_image" style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")' ></section>
-				<section class='wi-homepage-cta'>
-						<h1><?php echo get_theme_mod("wi_hero_title"); ?></h1>
-						<section>
-							<p><?php echo get_theme_mod("wi_hero_text"); ?></p>
-						</section>
-						<a href='<?php echo get_post(get_theme_mod("wi_hero_btn_link"))->guid; ?> ' class='hero-btn'><?php echo get_theme_mod("wi_hero_btn");?> </a>
-				</section>
-			</section>
-
 	</header>
 
 		<?php
@@ -114,7 +98,7 @@ function do_custom_title_and_search_mobile($build_nav){
 			<section class='wi_homepage_header_toprow_mobile'>
 
 					<?php the_custom_logo(); ?>
-					<?php  echo "Well this part echos " .  $build_nav; ?>
+					<?php  echo $build_nav; ?>
 			</section>
 			<section class="wi_mobile_header_image" style='background-image: url(" <?php echo get_theme_mod("wi_hero_background_image"); ?> ")' ></section>
 	    <section class='wi-homepage-cta'>

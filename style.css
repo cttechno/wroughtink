@@ -1132,10 +1132,18 @@ img.alignright,
 	margin: 10px 10px;
 }
 
+.wi_homepage_site_logo img{
+	height: 110px;
+    width: 110px;
+    position: absolute;
+    left: 0;
+    margin-left: 20px;
+}
+
 .wi_homepage_header_toprow_mobile img{
 	max-width: 100px;
 }
-.wi_homepage_header{
+.wi_search{
 	display: none;
 }
 
@@ -1151,9 +1159,12 @@ img.alignright,
 }
 
 .wi-homepage-cta{
+	position: absolute;
+	top: 25%;
+	left: 10%;
 	text-align: center;
-max-width: 80%;
-margin: 20px auto;
+	max-width: 80%;
+	margin: 20px auto;
 }
 
 .wi-homepage-cta p{
@@ -1249,7 +1260,7 @@ margin: 20px auto;
 .sub-menu-toggle {
 	background-color: transparent;
 	border-width: 0;
-	color: #333;
+	color: white;
 	display: block;
 	margin: 0 auto;
 	overflow: hidden;
@@ -1586,11 +1597,40 @@ p.entry-meta {
 	}
 
 	.wi_homepage_header p{
-		font-size: 22px;
+		font-size: 18px;
 	}
-	.wi_homepage_header_mobile{
+	.wi_search{
+		display: block;
+		position: absolute;
+		top: 20px;
+	}
+
+	.wi_homepage_site_logo img{
+		height: 150px;
+width: 200px;
+position: relative;
+margin-left: 20px;
+	}
+
+
+	.wi-homepage-cta{
+		position: absolute;
+top: 50%;
+left: 10%;
+text-align: center;
+max-width: 80%;
+margin: 20px auto;
+	}
+
+	.wi-homepage-cta h1{
+		font-size: 30px !important;
+	}
+	.wi_homepage_header_toprow{
+
+	}
+	/* .wi_homepage_header_mobile{
 		display: none;
-	}
+	} */
 
 
 	/* Lightbox Styles
@@ -1751,6 +1791,25 @@ p.entry-meta {
 	.wi-gallery-img:hover{
 		cursor: pointer;
 	}
+
+	/* .homepage-shop-link-container{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.wi-shop-category{
+		width: 300px;
+		height: 200px !important;
+		margin: 35px auto;
+		padding: 20px;
+	}
+
+	.wi-shop-category-image-container{
+		height: 300px;
+		width:250px;
+		background-color: pink;
+	} */
 
 	/* Sidebar
 	--------------------------------------------- */
