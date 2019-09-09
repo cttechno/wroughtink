@@ -86,6 +86,15 @@ function genesis_sample_enqueue_scripts_styles() {
 		true
 	);
 
+	wp_enqueue_script(
+		'wroughtink-homepage-js',
+		get_stylesheet_directory_uri() . '/js/wi-homepage.js',
+		array(),
+		CHILD_THEME_VERSION,
+		false
+	);
+
+
 	wp_localize_script(
 		'genesis-sample-responsive-menu',
 		'genesis_responsive_menu',
@@ -102,7 +111,10 @@ function genesis_sample_enqueue_scripts_styles() {
 
 	wp_enqueue_script(
 		'featherlight-js',
-		get_stylesheet_directory_uri() .'/featherlight/featherlight.js'
+		get_stylesheet_directory_uri() .'/featherlight/featherlight.js',
+		array(),
+		false,
+		true
 	);
 
 
@@ -113,6 +125,8 @@ function genesis_sample_enqueue_scripts_styles() {
 		CHILD_THEME_VERSION,
 		true
 	);
+
+
 
 }
 
@@ -279,3 +293,15 @@ function genesis_sample_comments_gravatar( $args ) {
 */
 require_once "components/hero/hero_customizer.php";
 require_once "components/homepage_content/wi_content_controles.php";
+
+function getImage(){
+	return get_theme_mod("wi_hero_background_image");
+}
+
+//end point http://wroughtink.local/wp-json/wroughtink/v1/hero_image
+add_action("rest_api_init", function(){
+	register_rest_route('wroughtink/v1/', 'hero_image', [
+		"method" => "GET",
+		"callback" => 'getImage',
+	]);
+});
