@@ -1129,9 +1129,9 @@ img.alignright,
 	color: rgb(51, 51, 51);
 }
 
-.wi_homepage_header_toprow_mobile{
+/* .wi_homepage_header_toprow_mobile{
 	margin: 10px 10px;
-}
+} */
 
 .wi_homepage_site_logo img{
 	height: 110px;
@@ -1142,6 +1142,7 @@ img.alignright,
 }
 
 .wi_homepage_header_toprow_mobile img{
+	margin-top: 30px;
 	max-width: 100px;
 }
 .wi_search{
@@ -1596,6 +1597,11 @@ p.entry-meta {
 	max-width: 500px;
 }
 
+.wi_homepage_header_mobile{
+	background-size: cover;
+	height: 100vh;
+	background-
+}
 
 	.site-header {
 		position: fixed;
@@ -1624,13 +1630,15 @@ margin-left: 20px;
 
 
 	.wi-homepage-cta{
-		background-color: pink;
 		position: absolute;
-top: 50%;
-left: 10%;
-text-align: center;
-max-width: 80%;
-margin: 20px auto;
+		top: 50%;
+		left: 10%;
+		text-align: center;
+		max-width: 80%;
+		margin: 20px auto;
+		color: white;
+		background-color: rgba(0,0,0,.6);
+		padding: 20px;
 	}
 
 	.wi-homepage-cta h1{
@@ -1659,6 +1667,11 @@ margin: 20px auto;
 
 	/* Genesis Menu
 	--------------------------------------------- */
+
+	.genesis-nav-menu a {
+		
+		color:white;
+	}
 
 	.genesis-nav-menu .menu-item {
 		display: inline-block !important;
@@ -1753,15 +1766,26 @@ margin: 20px auto;
 		font-size: 25px;
 	}
 
+	.wi_homepage_header_mobile .menu-item a{
+		color:white;
+	}
+
 	.wi_homepage_header nav{
 		position: relative !important;
 	}
 
-	.wi_homepage_header nav a {
-		color:white !important;
+	.genesis-nav-menu .sub-menu a {
+		color:  rgb(51, 51, 51);
 	}
 
 
+	/* .wi_homepage_header nav a {
+		color:white !important;
+	} */
+
+	.wi_homepage_header nav .sub a {
+		color:blue !important;
+	}
 	.wi_homepage_header nav li ul a {
 		background-color: rgb(51, 51, 51) !important;
 	}
